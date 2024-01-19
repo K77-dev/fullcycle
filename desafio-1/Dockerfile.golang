@@ -1,9 +1,6 @@
 FROM golang:alpine
-RUN apk add --no-cache git
 WORKDIR /app
 COPY main.go .
 ENV GO111MODULE=off
-RUN go get -u github.com/go-sql-driver/mysql
-RUN go build -o fullcycle-rocks
-EXPOSE 8080
-CMD ["./fullcycle-rocks"]
+RUN go build -o fullcycle
+CMD ["./fullcycle"]
