@@ -1,20 +1,9 @@
-# Usa uma imagem oficial do Go como base
 FROM golang:alpine
-
-# Define o diretório de trabalho
+RUN apk add --no-cache git
 WORKDIR /app
-
-# Copia os arquivos do projeto para o diretório de trabalho
 COPY main.go .
-
-# Desabilita o modo de módulos do Go
 ENV GO111MODULE=off
-
-# Compila o aplicativo
+RUN go get -u github.com/go-sql-driver/mysql
 RUN go build -o fullcycle-rocks
-
-# Expõe a porta 8080
 EXPOSE 8080
-
-# Executa o aplicativo
 CMD ["./fullcycle-rocks"]
